@@ -23,9 +23,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/css/style.css"
             ],
-            "scripts": []
+            "scripts": ['src/assets/js/jquery2.0.3.min.js','src/assets/js/skycons.js','src/assets/js/raphael-min.js','src/assets/js/morris.js','src/assets/js/modernizr.js','src/assets/js/jquery.cookie.js','src/assets/js/screenfull.js','src/assets/js/bootstrap.js','src/assets/js/proton.js']
           },
           "configurations": {
             "production": {

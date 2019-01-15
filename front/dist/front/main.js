@@ -201,6 +201,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _survey_answers_survey_answers_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./survey-answers/survey-answers.component */ "./src/app/survey-answers/survey-answers.component.ts");
 /* harmony import */ var _survey_questions_survey_questions_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./survey-questions/survey-questions.component */ "./src/app/survey-questions/survey-questions.component.ts");
 /* harmony import */ var _user_location_user_location_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./user-location/user-location.component */ "./src/app/user-location/user-location.component.ts");
+/* harmony import */ var _user_list_user_list_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user-list/user-list.component */ "./src/app/user-list/user-list.component.ts");
+
 
 
 
@@ -211,6 +213,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [
     { path: 'user', component: _user_user_component__WEBPACK_IMPORTED_MODULE_1__["UserComponent"] },
+    { path: 'users', component: _user_list_user_list_component__WEBPACK_IMPORTED_MODULE_8__["UserListComponent"] },
     { path: 'user-location', component: _locations_locations_component__WEBPACK_IMPORTED_MODULE_2__["LocationsComponent"] },
     { path: 'product', component: _product_product_component__WEBPACK_IMPORTED_MODULE_3__["ProductComponent"] },
     { path: 'survey', component: _survey_survey_component__WEBPACK_IMPORTED_MODULE_4__["SurveyComponent"] },
@@ -860,7 +863,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  user-list works!\n</p>\n"
+module.exports = "<h1>\nSystem Users\n</h1>\n<div>\n<table style=\"width:100%\">\n<tr>\n<th>Name</th>\n<th>Phone</th>\n<th>Email</th>\n</tr>\n<tr *ngFor=\"let user of users\">\n<td> {{ user.fullname }} </td>\n<td> {{ user.phone }} </td>\n<td> {{ user.email }} </td>\n</tr>\n</table>"
 
 /***/ }),
 
@@ -876,6 +879,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserListComponent", function() { return UserListComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _services_user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/user */ "./src/app/services/user.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -887,12 +891,31 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var UserListComponent = /** @class */ (function () {
     function UserListComponent(userService) {
         this.userService = userService;
+        this.user = new _services_user__WEBPACK_IMPORTED_MODULE_2__["User"];
+        this.users = [];
         this.submitted = false;
     }
     UserListComponent.prototype.ngOnInit = function () {
+        this.reloadData();
+    };
+    UserListComponent.prototype.deleteUsers = function () {
+        var _this = this;
+        this.userService.deleteAll()
+            .subscribe(function (data) {
+            console.log(data);
+            _this.reloadData();
+        }, function (error) { return console.log('ERROR: ' + error); });
+    };
+    UserListComponent.prototype.reloadData = function () {
+        var _this = this;
+        this.userService.getUserList().subscribe(function (data) {
+            _this.users = data;
+            console.log(data);
+        });
     };
     UserListComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
