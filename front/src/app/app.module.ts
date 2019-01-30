@@ -23,6 +23,7 @@ import { SurveyAnswersComponent } from './survey-answers/survey-answers.componen
 import { SurveyQuestionsComponent } from './survey-questions/survey-questions.component';
 import { UserLocationComponent } from './user-location/user-location.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UserListComponent } from './user-list/user-list.component';
     SurveyAnswersComponent,
     SurveyQuestionsComponent,
     UserLocationComponent,
-    UserListComponent	
+    UserListComponent,
+    HomeComponent	
   ],
   imports: [
     BrowserModule,
